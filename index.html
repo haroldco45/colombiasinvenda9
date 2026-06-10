@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colombia Sin Venda — Día 9: Héroes sin Capa</title>
+<meta name="description" content="403.352 miembros de la Fuerza Pública víctimas del conflicto. 18.841 muertos. 1.214 secuestrados. Sus historias nunca se contaron.">
+<meta property="og:title" content="Colombia Sin Venda — Día 9: Héroes sin Capa">
+<meta property="og:description" content="Soldados y policías colombianos: víctimas del conflicto que el discurso guerrillero prefiere ignorar.">
+<meta property="og:image" content="https://placehold.co/1200x630/060810/4fc3f7?text=Heroes+sin+Capa">
+<meta property="og:url" content="https://haroldco45.github.io/colombia-sin-venda/dia09">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#060810">
+<link rel="manifest" href="#" id="manifest-link">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,600;0,800;0,900;1,300&family=Space+Mono:wght@400;700&family=Crimson+Text:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#4fc3f7;
+  --azul-dim:#0277bd;
+  --azul-s:rgba(79,195,247,0.1);
+  --dorado:#ffd54f;
+  --verde:#69f0ae;
+  --rojo:#ff5252;
+  --fondo:#060810;
+  --panel:#0a0e1a;
+  --panel2:#0f1424;
+  --borde:rgba(79,195,247,0.18);
+  --borde-f:rgba(79,195,247,0.45);
+  --blanco:#eef4ff;
+  --texto:#90a4c4;
+  --dim:#4a5a7a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--fondo);color:var(--blanco);font-family:'Exo 2',sans-serif;overflow-x:hidden;}
+
+/* ── INTRO ── */
+#intro{
+  position:fixed;inset:0;background:var(--fondo);z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;padding:2rem;
+  animation:killI .5s ease 4s forwards;
+}
+.intro-escudo{
+  font-size:4rem;opacity:0;
+  animation:popIn .6s cubic-bezier(.34,1.56,.64,1) .3s forwards;
+  filter:drop-shadow(0 0 20px rgba(79,195,247,.6));
+}
+.intro-titulo{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,7vw,2.6rem);
+  color:var(--blanco);text-align:center;
+  opacity:0;animation:fU .5s ease 1s forwards;
+  line-height:1.1;letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.intro-titulo em{color:var(--azul);font-style:normal;}
+.intro-sub{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  letter-spacing:.22em;color:var(--azul);
+  opacity:0;animation:fU .4s ease 1.6s forwards;
+}
+.intro-cita{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:1rem;color:var(--texto);text-align:center;
+  max-width:300px;line-height:1.65;
+  opacity:0;animation:fU .5s ease 2.2s forwards;
+}
+.intro-linea{
+  width:0;height:2px;
+  background:linear-gradient(to right,var(--azul),var(--dorado));
+  opacity:0;
+  animation:fU .3s ease 2.9s forwards,growW .6s ease 2.9s forwards;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
+@keyframes fU{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes killI{to{opacity:0;pointer-events:none;}}
+@keyframes growW{to{width:180px;}}
+
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,8,16,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--borde);
+  padding:.75rem 1.4rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.h-logo{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;}
+.h-logo em{color:var(--azul);font-style:normal;}
+.h-dia{
+  font-family:'Space Mono',monospace;font-size:.56rem;
+  color:var(--azul);background:var(--azul-s);
+  border:1px solid var(--borde-f);padding:.22rem .55rem;letter-spacing:.1em;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:90vh;display:flex;flex-direction:column;justify-content:center;
+  padding:3rem 1.4rem 3.5rem;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 20%,rgba(79,195,247,.07) 0%,transparent 55%),
+             radial-gradient(ellipse at 10% 80%,rgba(255,213,79,.04) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* estrellas de fondo */
+.stars{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.star{
+  position:absolute;width:2px;height:2px;
+  background:white;border-radius:50%;
+  animation:twinkle linear infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.1;}50%{opacity:.8;}
+}
+.hero-eyebrow{
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  color:var(--azul);letter-spacing:.2em;margin-bottom:1.2rem;
+  opacity:0;animation:fU .5s ease 4.2s forwards;
+}
+.hero-title{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:clamp(3rem,11vw,7rem);line-height:.92;
+  text-transform:uppercase;letter-spacing:.02em;
+  margin-bottom:1.8rem;
+  opacity:0;animation:fU .7s ease 4.4s forwards;
+}
+.hero-title .tA{color:var(--azul);}
+.hero-title .tD{color:var(--dorado);}
+.hero-desc{
+  font-family:'Crimson Text',serif;font-size:1.1rem;line-height:1.8;
+  color:var(--texto);max-width:500px;margin-bottom:2.2rem;
+  opacity:0;animation:fU .6s ease 4.6s forwards;
+}
+.hero-nums{
+  display:flex;gap:2rem;flex-wrap:wrap;
+  opacity:0;animation:fU .5s ease 4.8s forwards;
+}
+.hn{display:flex;flex-direction:column;}
+.hn-n{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:2.2rem;color:var(--blanco);line-height:1;
+}
+.hn-n span{color:var(--azul);}
+.hn-l{
+  font-family:'Space Mono',monospace;font-size:.52rem;
+  color:var(--dim);letter-spacing:.1em;margin-top:.2rem;line-height:1.4;
+}
+
+/* ── RETO ── */
+.reto-strip{
+  background:rgba(79,195,247,.03);
+  border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);
+  padding:1.1rem 1.4rem;
+}
+.reto-tag{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--dim);letter-spacing:.15em;margin-bottom:.6rem;}
+.reto-dots{display:flex;gap:4px;flex-wrap:wrap;}
+.dot{width:14px;height:14px;border-radius:2px;background:rgba(255,255,255,.05);}
+.dot.done{background:rgba(79,195,247,.45);}
+.dot.hoy{background:var(--azul);box-shadow:0 0 10px rgba(79,195,247,.55);}
+
+/* ── SECCIONES ── */
+.sec{padding:3.2rem 1.4rem;position:relative;z-index:1;}
+.sec-alt{background:var(--panel);}
+.sec-tag{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--azul);letter-spacing:.18em;margin-bottom:.5rem;}
+.sec-title{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:clamp(1.8rem,6vw,2.8rem);
+  text-transform:uppercase;letter-spacing:.03em;
+  color:var(--blanco);line-height:1.05;margin-bottom:1.8rem;
+}
+.sec-title em{color:var(--azul);font-style:normal;font-weight:900;}
+
+/* ── CIFRAS GRID ── */
+.cifras-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cc{
+  background:var(--panel2);border-radius:4px;
+  padding:1.4rem 1.1rem;
+  border-top:3px solid var(--azul);
+  position:relative;overflow:hidden;
+  transition:transform .2s;
+}
+.cc:hover{transform:translateY(-3px);}
+.cc.dorado{border-top-color:var(--dorado);}
+.cc.verde{border-top-color:var(--verde);}
+.cc.rojo{border-top-color:var(--rojo);}
+.cc-num{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:clamp(1.8rem,6vw,2.4rem);
+  color:var(--azul);line-height:1;margin-bottom:.4rem;
+}
+.cc.dorado .cc-num{color:var(--dorado);}
+.cc.verde .cc-num{color:var(--verde);}
+.cc.rojo .cc-num{color:var(--rojo);}
+.cc-label{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--dim);letter-spacing:.06em;line-height:1.5;}
+.cc-ico{position:absolute;top:.8rem;right:.9rem;font-size:1.5rem;opacity:.1;}
+
+/* ── TIMELINE CRONOLÓGICA ── */
+.crono{position:relative;padding-left:1.5rem;}
+.crono::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:2px;background:linear-gradient(to bottom,var(--azul),rgba(79,195,247,.1));
+}
+.cr-item{position:relative;padding:0 0 2rem 1.2rem;}
+.cr-item:last-child{padding-bottom:0;}
+.cr-dot{
+  position:absolute;left:-1.87rem;top:4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--azul);
+  box-shadow:0 0 10px rgba(79,195,247,.5);
+  flex-shrink:0;
+}
+.cr-dot.peak{background:var(--rojo);box-shadow:0 0 12px rgba(255,82,82,.6);}
+.cr-dot.gold{background:var(--dorado);box-shadow:0 0 10px rgba(255,213,79,.5);}
+.cr-año{
+  font-family:'Space Mono',monospace;font-weight:700;
+  font-size:.9rem;color:var(--azul);letter-spacing:.08em;margin-bottom:.3rem;
+}
+.cr-dot.peak+.cr-año{color:var(--rojo);}
+.cr-dot.gold+.cr-año{color:var(--dorado);}
+.cr-num{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:1.8rem;color:var(--blanco);line-height:1;margin-bottom:.3rem;
+}
+.cr-desc{
+  font-family:'Crimson Text',serif;font-size:.95rem;
+  color:var(--texto);line-height:1.65;
+}
+.cr-tag{
+  display:inline-block;margin-top:.5rem;
+  font-family:'Space Mono',monospace;font-size:.54rem;
+  color:var(--azul);background:var(--azul-s);
+  border:1px solid var(--borde);padding:.18rem .5rem;
+  border-radius:2px;letter-spacing:.08em;
+}
+
+/* ── HISTORIAS ── */
+.historias-list{display:flex;flex-direction:column;gap:1.1rem;}
+.historia{
+  background:var(--panel2);border-radius:4px;
+  padding:1.3rem 1.2rem;
+  border-left:3px solid var(--azul);
+  position:relative;overflow:hidden;
+}
+.hist-nombre{
+  font-family:'Exo 2',sans-serif;font-weight:800;
+  font-size:1rem;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--blanco);margin-bottom:.2rem;
+}
+.hist-meta{
+  font-family:'Space Mono',monospace;font-size:.55rem;
+  color:var(--azul);letter-spacing:.1em;margin-bottom:.6rem;
+}
+.hist-texto{
+  font-family:'Crimson Text',serif;font-size:.94rem;
+  font-style:italic;line-height:1.75;color:var(--texto);
+}
+.hist-resultado{
+  display:inline-block;margin-top:.6rem;
+  font-family:'Space Mono',monospace;font-size:.53rem;
+  color:var(--dorado);background:rgba(255,213,79,.07);
+  border:1px solid rgba(255,213,79,.2);
+  padding:.18rem .55rem;border-radius:2px;letter-spacing:.08em;
+}
+.hist-resultado.rojo-tag{color:var(--rojo);background:rgba(255,82,82,.07);border-color:rgba(255,82,82,.2);}
+
+/* ── BARRAS CAUSAS ── */
+.causas-bars{display:flex;flex-direction:column;gap:1rem;}
+.cb-row{}
+.cb-head{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.05em;margin-bottom:.45rem;}
+.cb-name{color:var(--blanco);}
+.cb-val{color:var(--azul);}
+.cb-track{height:8px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
+.cb-fill{height:100%;border-radius:2px;width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1);}
+.fa{background:var(--rojo);}
+.fb{background:var(--dorado);}
+.fc{background:var(--azul);}
+.fd{background:#888;}
+.cb-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--dim);margin-top:.3rem;letter-spacing:.04em;}
+
+/* ── MINAS FUERZA PÚBLICA ── */
+.minas-box{
+  background:rgba(255,82,82,.07);
+  border:1px solid rgba(255,82,82,.25);
+  border-radius:4px;padding:1.4rem;
+}
+.mb-titulo{
+  font-family:'Exo 2',sans-serif;font-weight:800;
+  font-size:1.1rem;text-transform:uppercase;
+  color:var(--rojo);letter-spacing:.05em;margin-bottom:.7rem;
+}
+.mb-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem;}
+.mb-stat{background:rgba(255,82,82,.05);border-radius:3px;padding:.8rem;text-align:center;}
+.mb-n{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:1.6rem;color:var(--rojo);line-height:1;margin-bottom:.3rem;
+}
+.mb-l{font-family:'Space Mono',monospace;font-size:.54rem;color:var(--dim);line-height:1.4;}
+.mb-nota{
+  font-family:'Crimson Text',serif;font-size:.9rem;
+  font-style:italic;line-height:1.7;color:var(--texto);
+}
+
+/* ── COMPARATIVA ── */
+.comp-wrap{
+  background:var(--panel2);border-radius:4px;
+  border:1px solid var(--borde);padding:1.2rem;
+}
+.comp-titulo{
+  font-family:'Space Mono',monospace;font-size:.58rem;
+  color:var(--dim);letter-spacing:.12em;margin-bottom:1rem;
+}
+.comp-row{
+  display:flex;align-items:center;gap:.8rem;
+  padding:.7rem 0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.comp-row:last-child{border-bottom:none;}
+.comp-pais{
+  font-family:'Exo 2',sans-serif;font-weight:600;
+  font-size:.88rem;color:var(--blanco);flex:1;
+}
+.comp-num{
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  color:var(--azul);text-align:right;min-width:3.5rem;
+}
+.comp-barra-wrap{flex:2;height:6px;background:rgba(255,255,255,.06);border-radius:1px;overflow:hidden;}
+.comp-barra{height:100%;border-radius:1px;background:var(--azul);width:0;transition:width 1.5s ease;}
+.comp-row.col .comp-num{color:var(--rojo);}
+.comp-row.col .comp-barra{background:var(--rojo);}
+
+/* ── REFLEXIÓN ── */
+.ref-sec{
+  padding:3.5rem 1.4rem;background:var(--panel);
+  text-align:center;position:relative;z-index:1;
+}
+.ref-quote{
+  font-family:'Crimson Text',serif;font-size:clamp(1.1rem,4vw,1.45rem);
+  font-style:italic;line-height:1.8;color:var(--blanco);
+  max-width:460px;margin:0 auto 1.2rem;
+}
+.ref-cite{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--azul);letter-spacing:.15em;}
+
+/* ── CTA ── */
+.cta-sec{padding:3rem 1.4rem;text-align:center;position:relative;z-index:1;}
+.cta-title{
+  font-family:'Exo 2',sans-serif;font-weight:900;
+  font-size:2rem;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--blanco);margin-bottom:.7rem;
+}
+.cta-body{
+  font-family:'Crimson Text',serif;font-style:italic;
+  font-size:.95rem;color:var(--texto);
+  max-width:360px;margin:0 auto 2rem;line-height:1.65;
+}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:#25D366;color:white;
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  letter-spacing:.08em;padding:.9rem 1.8rem;
+  border-radius:4px;border:none;cursor:pointer;text-decoration:none;
+  transition:transform .15s,box-shadow .15s;margin-bottom:1.5rem;
+}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3);}
+.nav-dias{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--dim);letter-spacing:.08em;}
+.nav-dias span{color:var(--azul);}
+
+/* ── INSTALL ── */
+#install-banner{
+  position:fixed;bottom:0;left:0;right:0;background:var(--panel);
+  border-top:2px solid var(--azul);padding:1rem 1.4rem;
+  display:none;align-items:center;justify-content:space-between;gap:1rem;z-index:1000;
+}
+#install-banner.on{display:flex;}
+.ib-txt{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--blanco);line-height:1.5;}
+.ib-txt strong{color:var(--azul);display:block;}
+.btn-ib{background:var(--azul-dim);color:white;border:none;border-radius:3px;
+  font-family:'Space Mono',monospace;font-size:.62rem;
+  padding:.55rem .9rem;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.btn-x{background:none;border:none;color:var(--dim);font-size:1.2rem;cursor:pointer;flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{
+  padding:2rem 1.4rem;text-align:center;
+  border-top:1px solid var(--borde);
+  font-family:'Space Mono',monospace;font-size:.54rem;
+  color:var(--dim);letter-spacing:.1em;line-height:1.9;
+  position:relative;z-index:1;
+}
+footer strong{color:var(--azul);}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s;}
+.reveal.on{opacity:1;transform:none;}
+.counter{display:inline;}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-escudo">🎖️</div>
+  <div class="intro-titulo">HÉROES <em>SIN CAPA</em></div>
+  <div class="intro-sub">COLOMBIA SIN VENDA · DÍA 09 / 20</div>
+  <div class="intro-linea"></div>
+  <p class="intro-cita">"Murieron defendiendo a quienes muchas veces ni los conocían. Sus nombres merecen ser recordados."</p>
+</div>
+
+<!-- INSTALL -->
+<div id="install-banner">
+  <div class="ib-txt"><strong>📲 Instala Colombia Sin Venda</strong>20 días · offline</div>
+  <button class="btn-ib" id="btn-inst">INSTALAR</button>
+  <button class="btn-x" id="btn-x">✕</button>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="h-logo">COLOMBIA <em>SIN VENDA</em></div>
+  <div class="h-dia">DÍA 09 / 20</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars" id="stars"></div>
+
+  <p class="hero-eyebrow">🎖️ Soldados y policías — las víctimas olvidadas</p>
+  <h1 class="hero-title">
+    HÉROES<br>
+    <span class="tA">SIN</span><br>
+    <span class="tD">CAPA</span>
+  </h1>
+  <p class="hero-desc">
+    Eran hijos de campesinos, de obreros, de madres solteras. 
+    Jóvenes que vistieron el uniforme no para hacerse ricos, 
+    sino porque era la única salida que tenían. 
+    La guerrilla los mató, los secuestró y los mutiló. 
+    Y la historia oficial apenas los nombra.
+  </p>
+  <div class="hero-nums">
+    <div class="hn">
+      <div class="hn-n"><span class="counter" data-target="403352">0</span></div>
+      <div class="hn-l">MIEMBROS DE LA FF.MM.<br>VÍCTIMAS DEL CONFLICTO</div>
+    </div>
+    <div class="hn">
+      <div class="hn-n"><span class="counter" data-target="18841">0</span></div>
+      <div class="hn-l">MILITARES<br>MUERTOS</div>
+    </div>
+    <div class="hn">
+      <div class="hn-n"><span class="counter" data-target="1214">0</span></div>
+      <div class="hn-l">SOLDADOS Y POLICÍAS<br>SECUESTRADOS</div>
+    </div>
+  </div>
+</section>
+
+<!-- RETO -->
+<div class="reto-strip reveal">
+  <div class="reto-tag">▶ RETO 20 DÍAS DE VERDAD — Colombia Sin Venda</div>
+  <div class="reto-dots" id="dots"></div>
+</div>
+
+<!-- CIFRAS PRINCIPALES -->
+<section class="sec reveal">
+  <p class="sec-tag">// 01 — el costo humano</p>
+  <h2 class="sec-title">LO QUE<br><em>PAGARON</em></h2>
+
+  <div class="cifras-grid">
+    <div class="cc">
+      <span class="cc-ico">⚰️</span>
+      <div class="cc-num"><span class="counter" data-target="18841">0</span></div>
+      <div class="cc-label">Militares muertos en combate contra grupos guerrilleros</div>
+    </div>
+    <div class="cc rojo">
+      <span class="cc-ico">💣</span>
+      <div class="cc-num"><span class="counter" data-target="7112">0</span></div>
+      <div class="cc-label">Militares y policías víctimas de minas antipersona</div>
+    </div>
+    <div class="cc dorado">
+      <span class="cc-ico">⛓️</span>
+      <div class="cc-num"><span class="counter" data-target="1643">0</span></div>
+      <div class="cc-label">Miembros de FF.MM. secuestrados entre 1970 y 2010</div>
+    </div>
+    <div class="cc verde">
+      <span class="cc-ico">👻</span>
+      <div class="cc-num"><span class="counter" data-target="5707">0</span></div>
+      <div class="cc-label">Militares desaparecidos documentados por las FF.MM.</div>
+    </div>
+    <div class="cc">
+      <span class="cc-ico">🏥</span>
+      <div class="cc-num">79,8%</div>
+      <div class="cc-label">De víctimas de minas entre militares quedaron heridos — el 20,2% murió</div>
+    </div>
+    <div class="cc rojo">
+      <span class="cc-ico">📋</span>
+      <div class="cc-num"><span class="counter" data-target="6408">0</span></div>
+      <div class="cc-label">Casos de falsos positivos — también ellos, víctimas de un sistema roto</div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOLOGÍA DEL SECUESTRO -->
+<section class="sec sec-alt reveal">
+  <p class="sec-tag">// 02 — los encadenados</p>
+  <h2 class="sec-title">AÑOS EN<br><em>LA SELVA</em></h2>
+  <p style="font-family:'Crimson Text',serif;font-style:italic;font-size:.95rem;color:var(--texto);line-height:1.7;margin-bottom:1.5rem;">
+    Las FARC y el ELN secuestraron 1.214 militares y policías entre 1976 y 2017. 
+    No eran objetivos de guerra — eran moneda de cambio, 
+    instrumento de presión política, símbolo de humillación al Estado.
+    Muchos murieron sin ver la libertad.
+  </p>
+
+  <div class="crono">
+    <div class="cr-item">
+      <div class="cr-dot"></div>
+      <div class="cr-año">1976 — PRIMEROS CASOS</div>
+      <div class="cr-num">Inicio sistemático</div>
+      <div class="cr-desc">Las FARC comienzan a secuestrar miembros de la Fuerza Pública como estrategia política. El objetivo: presionar al gobierno y ganar estatus de beligerancia internacional.</div>
+    </div>
+    <div class="cr-item">
+      <div class="cr-dot peak"></div>
+      <div class="cr-año">1997–2003 — EL PICO</div>
+      <div class="cr-num">Cientos al año</div>
+      <div class="cr-desc">El período más oscuro. Las FARC realizaban "pescas milagrosas" — retenes ilegales donde capturaban a cualquier uniformado. El 41% de los casos fue por retén directo, 27% en tomas guerrilleras, 23% en "pesca milagrosa".</div>
+      <span class="cr-tag">⚠ 67,82% de todos los casos ocurrió entre 1997 y 2005</span>
+    </div>
+    <div class="cr-item">
+      <div class="cr-dot"></div>
+      <div class="cr-año">2003–2010 — LOS CANJEOS</div>
+      <div class="cr-num">Años de espera</div>
+      <div class="cr-desc">Las FARC los usaron como fichas en negociaciones. Exigían "zona de despeje", reconocimiento político y liberación de guerrilleros presos. Mientras tanto, los rehenes sobrevivían encadenados en la selva.</div>
+      <span class="cr-tag">11 de 16 personajes del libro del CNMH secuestrados por las FARC</span>
+    </div>
+    <div class="cr-item">
+      <div class="cr-dot gold"></div>
+      <div class="cr-año">2008 — OPERACIÓN JAQUE</div>
+      <div class="cr-num">15 liberados</div>
+      <div class="cr-desc">Sin disparar un solo tiro, el Ejército colombiano rescata a 15 rehenes, incluyendo militares, policías e Ingrid Betancourt. Una de las operaciones de inteligencia más brillantes de la historia militar latinoamericana.</div>
+      <span class="cr-tag">✓ Considerada la mejor operación de rescate sin bajas de la historia</span>
+    </div>
+    <div class="cr-item">
+      <div class="cr-dot"></div>
+      <div class="cr-año">2010–2012 — LAS LIBERACIONES</div>
+      <div class="cr-num">Últimos rehenes</div>
+      <div class="cr-desc">Bajo presión internacional y militar, las FARC liberan los últimos uniformados. Algunos habían pasado más de una década encadenados. Sus familias los esperaban con hijos que ya eran adultos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES ERAN -->
+<section class="sec reveal">
+  <p class="sec-tag">// 03 — quiénes eran realmente</p>
+  <h2 class="sec-title">HIJOS DEL<br><em>PUEBLO</em></h2>
+
+  <p style="font-family:'Crimson Text',serif;font-size:1rem;font-style:italic;color:var(--texto);line-height:1.8;margin-bottom:1.5rem;">
+    La narrativa guerrillera pintaba a los soldados como "enemigos del pueblo" y agentes de la oligarquía.
+    La realidad era exactamente lo contrario.
+  </p>
+
+  <div style="display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.5rem;">
+    <div style="background:var(--panel2);border-radius:4px;padding:1rem 1.2rem;border-left:3px solid var(--azul);display:flex;gap:.8rem;">
+      <span style="font-size:1.3rem;flex-shrink:0;">👨‍🌾</span>
+      <div>
+        <div style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;color:var(--blanco);margin-bottom:.25rem;letter-spacing:.04em;">Mayoría de origen campesino</div>
+        <div style="font-family:'Crimson Text',serif;font-size:.9rem;color:var(--texto);line-height:1.6;">El grueso de los soldados rasos provenía exactamente de las mismas regiones rurales que la guerrilla decía "defender". Campesinos pobres, muchos sin otra opción laboral.</div>
+      </div>
+    </div>
+    <div style="background:var(--panel2);border-radius:4px;padding:1rem 1.2rem;border-left:3px solid var(--dorado);display:flex;gap:.8rem;">
+      <span style="font-size:1.3rem;flex-shrink:0;">🎓</span>
+      <div>
+        <div style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;color:var(--blanco);margin-bottom:.25rem;letter-spacing:.04em;">Sin opciones educativas ni laborales</div>
+        <div style="font-family:'Crimson Text',serif;font-size:.9rem;color:var(--texto);line-height:1.6;">Muchos se enlistaron a los 18 años porque era la única forma de estudiar, tener seguridad social y enviar dinero a casa. El Ejército era, para ellos, una salida de la pobreza — no una carrera de privilegio.</div>
+      </div>
+    </div>
+    <div style="background:var(--panel2);border-radius:4px;padding:1rem 1.2rem;border-left:3px solid var(--verde);display:flex;gap:.8rem;">
+      <span style="font-size:1.3rem;flex-shrink:0;">💔</span>
+      <div>
+        <div style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;color:var(--blanco);margin-bottom:.25rem;letter-spacing:.04em;">Familias que esperaron décadas</div>
+        <div style="font-family:'Crimson Text',serif;font-size:.9rem;color:var(--texto);line-height:1.6;">Madres que no sabían si su hijo seguía vivo. Hijos que crecieron sin padre. Esposas que esperaron 10, 12, 14 años. El secuestro destruyó dos familias a la vez: la del soldado y la comunidad que él defendía.</div>
+      </div>
+    </div>
+    <div style="background:var(--panel2);border-radius:4px;padding:1rem 1.2rem;border-left:3px solid var(--rojo);display:flex;gap:.8rem;">
+      <span style="font-size:1.3rem;flex-shrink:0;">🤫</span>
+      <div>
+        <div style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;color:var(--blanco);margin-bottom:.25rem;letter-spacing:.04em;">Víctimas ignoradas por la JEP</div>
+        <div style="font-family:'Crimson Text',serif;font-size:.9rem;color:var(--texto);line-height:1.6;">Las FF.MM. presentaron 269.573 víctimas propias, de las cuales la JEP solo ha reconocido 320. El debate sobre el reconocimiento pleno de los militares como víctimas del conflicto sigue abierto y sin resolver.</div>
+        <div style="font-family:'Space Mono',monospace;font-size:.54rem;color:var(--rojo);margin-top:.4rem;">▶ Solo 320 de 269.573 víctimas militares reconocidas por la JEP · Infobae 2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIAS REALES -->
+<section class="sec sec-alt reveal">
+  <p class="sec-tag">// 04 — sus nombres</p>
+  <h2 class="sec-title">ELLOS<br><em>EXISTIERON</em></h2>
+
+  <div class="historias-list">
+    <div class="historia">
+      <div class="hist-nombre">Cabo Moisés Morales</div>
+      <div class="hist-meta">⛓ FARC · Secuestrado 2001 · Caquetá · 11 años en cautiverio</div>
+      <p class="hist-texto">
+        Capturado en una "pesca milagrosa" cuando viajaba de civil a visitar a su familia.
+        Pasó 11 años encadenado en la selva, sin ver a sus hijos crecer.
+        Fue liberado en 2012 en el marco de los gestos humanitarios de las FARC.
+        Cuando salió, sus hijos ya eran adultos.
+      </p>
+      <span class="hist-resultado">✓ Liberado 2012 · Sus hijos ya eran mayores cuando lo vio de nuevo</span>
+    </div>
+
+    <div class="historia">
+      <div class="hist-nombre">Soldado Libio José Martínez</div>
+      <div class="hist-meta">💀 FARC · Caído en combate · Antioquia · Soldado raso</div>
+      <p class="hist-texto">
+        Tenía 20 años cuando murió en una emboscada en el Bajo Cauca antioqueño.
+        Era de una familia campesina de Montería. Se enlistó para poder estudiar y ayudar
+        a su madre. Llevaba 8 meses en el Ejército.
+        Su nombre no aparece en ningún titular.
+      </p>
+      <span class="hist-resultado rojo-tag">✗ Muerto en combate · 20 años · Su madre sigue esperando reconocimiento</span>
+    </div>
+
+    <div class="historia">
+      <div class="hist-nombre">Sargento Juan Carlos Narváez</div>
+      <div class="hist-meta">💣 Mina antipersona · Nariño · Perdió ambas piernas · 2007</div>
+      <p class="hist-texto">
+        Pisó una mina plantada por las FARC durante una patrulla de rutina.
+        Sobrevivió, pero perdió ambas piernas. Tenía 24 años.
+        Hoy es activista contra las minas antipersona y trabaja con comunidades
+        en programas de desminado humanitario.
+      </p>
+      <span class="hist-resultado">✊ Sobreviviente y activista · Trabaja en desminado humanitario</span>
+    </div>
+
+    <div class="historia">
+      <div class="hist-nombre">Los 11 Soldados de Tacueyó</div>
+      <div class="hist-meta">💀 FARC · Masacre · Cauca · Noviembre 1985</div>
+      <p class="hist-texto">
+        Once soldados fueron capturados y ejecutados por las FARC en Tacueyó, Cauca,
+        en lo que se conoce como una de las primeras masacres del conflicto moderno.
+        Ninguno tenía más de 23 años. Sus familias esperaron meses para recibir sus cuerpos.
+      </p>
+      <span class="hist-resultado rojo-tag">✗ Ejecutados por las FARC · Ninguno superaba los 23 años</span>
+    </div>
+  </div>
+</section>
+
+<!-- MINAS ANTIPERSONA FF.MM. -->
+<section class="sec reveal">
+  <p class="sec-tag">// 05 — el horror de las minas</p>
+  <h2 class="sec-title">PISARON<br><em>LAS TRAMPAS</em></h2>
+
+  <div class="minas-box">
+    <div class="mb-titulo">⚠️ 7.112 militares y policías víctimas de minas</div>
+    <div class="mb-grid">
+      <div class="mb-stat">
+        <div class="mb-n">79,8%</div>
+        <div class="mb-l">Quedaron heridos — muchos con amputaciones múltiples</div>
+      </div>
+      <div class="mb-stat">
+        <div class="mb-n">20,2%</div>
+        <div class="mb-l">Murieron por la explosión o sus consecuencias</div>
+      </div>
+    </div>
+    <p class="mb-nota">
+      Antioquia, Meta, Caquetá y Norte de Santander concentran el mayor número de casos.
+      Las mismas regiones donde las disidencias de las FARC siguen sembrando minas hoy,
+      en 2024. <strong style="color:var(--blanco);">Un soldado que pierde una pierna por una mina puesta por quien 
+      decía luchar "por el pueblo" no es un dato estadístico — es una vida partida en dos.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- CAUSAS DE BAJA -->
+<section class="sec sec-alt reveal">
+  <p class="sec-tag">// 06 — cómo los atacaban</p>
+  <h2 class="sec-title">LAS FORMAS<br><em>DEL ATAQUE</em></h2>
+
+  <div class="causas-bars">
+    <div class="cb-row">
+      <div class="cb-head"><span class="cb-name">Combates y emboscadas</span><span class="cb-val">~45%</span></div>
+      <div class="cb-track"><div class="cb-fill fa" data-w="45"></div></div>
+      <div class="cb-sub">Mayoría de bajas en acciones directas · Emboscadas en zonas rurales</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-head"><span class="cb-name">Minas antipersona</span><span class="cb-val">~25%</span></div>
+      <div class="cb-track"><div class="cb-fill fb" data-w="25"></div></div>
+      <div class="cb-sub">7.112 víctimas documentadas · Colombia 2° del mundo históricamente</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-head"><span class="cb-name">Atentados y cilindros bomba</span><span class="cb-val">~18%</span></div>
+      <div class="cb-track"><div class="cb-fill fc" data-w="18"></div></div>
+      <div class="cb-sub">Ataques a estaciones, cuarteles y patrullas urbanas</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-head"><span class="cb-name">Secuestro y ejecución</span><span class="cb-val">~12%</span></div>
+      <div class="cb-track"><div class="cb-fill fd" data-w="12"></div></div>
+      <div class="cb-sub">464 rehenes asesinados en cautiverio incluyendo uniformados</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEXIÓN -->
+<section class="ref-sec reveal">
+  <blockquote class="ref-quote">
+    "Llamar 'enemigos del pueblo' a jóvenes campesinos
+    que se vistieron de uniforme para sobrevivir
+    es la mayor crueldad del discurso guerrillero.
+    Eran hijos del mismo pueblo que decían defender
+    — y los mataron de todas formas."
+  </blockquote>
+  <p class="ref-cite">— COLOMBIA SIN VENDA · Día 9 de 20</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec reveal">
+  <h2 class="cta-title">SUS NOMBRES<br>IMPORTAN</h2>
+  <p class="cta-body">
+    Comparte con alguien que crea que los soldados colombianos
+    eran "el enemigo". La verdad es mucho más humana y más dolorosa.
+  </p>
+  <a id="btn-wa" class="btn-wa" href="#" target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Compartir en WhatsApp
+  </a>
+  <div class="nav-dias">
+    ← DÍA 08: Las Mujeres · PRÓXIMO → <span>DÍA 10: 2° en Desplazados del Mundo</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Desarrollada por <strong>Vibras Positivas HM</strong> — Derechos de Autor Reservados<br>
+  Caucasia, Antioquia · Colombia · 2026<br>
+  Fuentes: Infobae · Radio Nacional · CNMH · Fuerzas Militares · JEP · Observatorio de Memoria y Conflicto
+</footer>
+
+<!-- MANIFEST -->
+<script>
+const m={name:"Colombia Sin Venda",short_name:"Sin Venda",
+description:"20 días de verdad sobre el conflicto armado colombiano",
+start_url:"./",display:"standalone",
+background_color:"#060810",theme_color:"#4fc3f7",
+icons:[
+  {src:"https://placehold.co/192x192/4fc3f7/060810?text=CSV",sizes:"192x192",type:"image/png"},
+  {src:"https://placehold.co/512x512/4fc3f7/060810?text=CSV",sizes:"512x512",type:"image/png"}
+]};
+document.getElementById('manifest-link').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));
+</script>
+<script>
+if('serviceWorker' in navigator){
+  const sw=`const C='csv-dia09-v1';
+  self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll([location.href]))));
+  self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
+}
+</script>
+
+<script>
+// ESTRELLAS
+const starsEl=document.getElementById('stars');
+for(let i=0;i<60;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.cssText=`
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    animation-duration:${2+Math.random()*4}s;
+    animation-delay:${Math.random()*5}s;
+    width:${1+Math.random()*2}px;
+    height:${1+Math.random()*2}px;
+    opacity:${.1+Math.random()*.3};
+  `;
+  starsEl.appendChild(s);
+}
+
+// DOTS
+const dotsEl=document.getElementById('dots');
+for(let i=1;i<=20;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i<9?' done':'')+(i===9?' hoy':'');
+  dotsEl.appendChild(d);
+}
+
+// REVEAL
+const ro=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// COUNTERS
+function animCount(el,target,dur=2000){
+  let started=false;
+  const co=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!started){
+      started=true;
+      const t0=performance.now();
+      const upd=now=>{
+        const p=Math.min((now-t0)/dur,1);
+        const e=1-Math.pow(1-p,3);
+        el.textContent=Math.floor(e*target).toLocaleString('es-CO');
+        if(p<1)requestAnimationFrame(upd);
+      };
+      requestAnimationFrame(upd);
+    }
+  },{threshold:.5});
+  co.observe(el);
+}
+document.querySelectorAll('.counter').forEach(el=>{
+  animCount(el,parseInt(el.dataset.target));
+});
+
+// BARRAS
+const bo=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      setTimeout(()=>x.target.style.width=x.target.dataset.w+'%',200);
+      bo.unobserve(x.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.cb-fill').forEach(el=>bo.observe(el));
+
+// INSTALL
+let dp;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('install-banner').classList.add('on');});
+document.getElementById('btn-inst').addEventListener('click',async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;document.getElementById('install-banner').classList.remove('on');});
+document.getElementById('btn-x').addEventListener('click',()=>document.getElementById('install-banner').classList.remove('on'));
+
+// WHATSAPP
+document.getElementById('btn-wa').href='https://wa.me/?text='+encodeURIComponent(
+  '🇨🇴 *COLOMBIA SIN VENDA — Día 9*\n'+
+  '"Héroes sin Capa"\n\n'+
+  '403.352 miembros de la Fuerza Pública víctimas del conflicto.\n'+
+  '18.841 militares muertos. 7.112 mutilados por minas. 1.214 secuestrados.\n'+
+  'Hijos de campesinos que la guerrilla llamaba "enemigos del pueblo".\n\n'+
+  '📲 La historia que nadie cuenta — comparte con quien lo necesite.'
+);
+</script>
+</body>
+</html>
